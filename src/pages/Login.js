@@ -27,7 +27,6 @@ const signUpValidationSchema = Yup.object().shape({
 const styles = {
   paperContainer: {
     background: `url("https://picsum.photos/800/800") no-repeat 50% 50% / cover`,
-
     position: "absolute",
     top: "0",
     left: "0",

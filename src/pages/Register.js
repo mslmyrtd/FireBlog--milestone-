@@ -26,7 +26,11 @@ const signUpValidationSchema = Yup.object().shape({
 });
 const styles = {
   paperContainer: {
-    backgroundImage: `url("https://picsum.photos/800/800")`,
+    background: `url("https://picsum.photos/800/800") no-repeat 50% 50% / cover`,
+    position: "absolute",
+    top: "0",
+    left: "0",
+    width: "100%",
   },
 };
 function Register() {
@@ -45,7 +49,7 @@ function Register() {
     <Paper style={styles.paperContainer}>
       <Container
         sx={{
-          marginTop: "4rem",
+          marginTop: "8rem",
           // mt: 6,
           height: "calc(100vh - 3rem)",
           textAlign: "center",
