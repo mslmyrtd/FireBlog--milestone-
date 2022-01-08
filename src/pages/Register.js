@@ -1,5 +1,4 @@
 import React from "react";
-import { LockOutlined } from "@mui/icons-material";
 
 import {
   Avatar,
@@ -11,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { blue } from "@mui/material/colors";
+
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -28,44 +27,40 @@ const signUpValidationSchema = Yup.object().shape({
 
 function Register() {
   const initialValues = {
-    username: "",
     email: "",
     password: "",
-    password2: "",
   };
 
   const handleSubmit = (values, { resetForm }) => {
     // console.log(values);
-    alert(
-      `username: ${values.username}
-      email: ${values.email}
-      password: ${values.password}
-      password2: ${values.password2}`
-    );
+
     resetForm();
   };
 
   return (
     <Container
       sx={{
-        marginTop: "3rem",
+        marginTop: "4rem",
         // mt: 6,
-        height: "calc(100vh - 3rem)",
+        height: "calc(88vh - 3rem)",
         textAlign: "center",
-        border: "2px solid red",
+        border: "2px solid white",
+        width: "35rem",
+        borderRadius: "1rem",
+        boxShadow: " 10x 5px 5px black",
       }}
       maxWidth="sm"
     >
       <Avatar
+        src="https://eds-fireblog.herokuapp.com/static/media/blok.7e6674a5.png"
         sx={{
           margin: "1rem auto",
-          bgcolor: "primary.main",
-          // bgcolor: blue[500],
+          width: "12rem",
+          height: "12rem",
+          bgcolor: "#046582",
         }}
-      >
-        <LockOutlined />
-      </Avatar>
-      <Typography sx={{ margin: "1rem" }} variant="h4">
+      ></Avatar>
+      <Typography sx={{ margin: "1rem" }} variant="h5">
         ----REGISTER----
       </Typography>
       <Formik
@@ -82,7 +77,7 @@ function Register() {
           handleBlur,
         }) => (
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   name="email"
