@@ -42,12 +42,12 @@ function Register() {
       sx={{
         marginTop: "4rem",
         // mt: 6,
-        height: "calc(88vh - 3rem)",
+        height: "calc(89vh - 3rem)",
         textAlign: "center",
         border: "2px solid white",
         width: "35rem",
         borderRadius: "1rem",
-        boxShadow: " 10x 5px 5px black",
+        boxShadow: "5px 10px 18px black",
       }}
       maxWidth="sm"
     >
@@ -111,6 +111,7 @@ function Register() {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  sx={{ ":hover": { bgcolor: "#D5D5D5", color: "#046582" } }}
                 >
                   Register
                 </Button>
@@ -118,9 +119,9 @@ function Register() {
               <Grid item xs={12}>
                 <Button
                   type="submit"
-                  variant="contained"
-                  color="primary"
+                  variant="outlined"
                   fullWidth
+                  sx={{ ":hover": { bgcolor: "#D5D5D5", color: "#046582" } }}
                 >
                   Google
                 </Button>
