@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: "#046582" }}>
+      <AppBar position="fixed" style={{ background: "#046582" }}>
         <Toolbar>
           <logo>
             <img

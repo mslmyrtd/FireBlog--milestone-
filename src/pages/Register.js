@@ -40,9 +40,9 @@ function Register() {
   return (
     <Container
       sx={{
-        marginTop: "4rem",
+        marginTop: "8rem",
         // mt: 6,
-        height: "calc(89vh - 3rem)",
+        height: "calc(100vh - 3rem)",
         textAlign: "center",
         border: "2px solid white",
         width: "35rem",
