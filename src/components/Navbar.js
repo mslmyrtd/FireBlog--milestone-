@@ -30,13 +30,13 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" style={{ background: "#046582" }}>
         <Toolbar>
-          <logo>
+          <Toolbar>
             <img
               src={cw}
               style={{ width: "45px" }}
               onClick={() => navigate("/")}
             />
-          </logo>
+          </Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {"<Mslm />"}
             BLOG
