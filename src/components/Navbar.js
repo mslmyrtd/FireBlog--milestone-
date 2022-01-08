@@ -12,6 +12,7 @@ import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "../pages/Dashboard";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -28,7 +29,10 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" style={{ background: "#046582" }}>
+      <AppBar
+        position="fixed"
+        style={{ background: "#046582", cursor: "pointer" }}
+      >
         <Toolbar>
           <Toolbar>
             <img
