@@ -62,7 +62,7 @@ function Login() {
           sx={{
             marginTop: "3.5rem",
             margin: "1rem auto",
-            width: "12rem",
+            width: "15rem",
             height: "12rem",
             bgcolor: "#046582",
           }}
