@@ -41,7 +41,12 @@ export default function Navbar() {
               onClick={() => navigate("/")}
             />
           </Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            onClick={() => navigate("/")}
+          >
             {"<Mslm />"}
             BLOG
           </Typography>
