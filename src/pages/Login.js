@@ -1,5 +1,5 @@
 import React from "react";
-import { LockOutlined } from "@mui/icons-material";
+
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import blok from "../assests/blok.png";
@@ -84,8 +84,16 @@ function Login() {
             bgcolor: "#046582",
           }}
         ></Avatar>
-        <Typography sx={{ margin: "1rem" }} variant="h4">
-          Sign Up
+        <Typography
+          sx={{
+            margin: "1rem",
+            color: "#046582",
+            fontFamily: "Girassol",
+            fontWeight: 800,
+          }}
+          variant="h4"
+        >
+          ─── Login ───
         </Typography>
         <Formik
           initialValues={initialValues}
@@ -159,19 +167,6 @@ function Login() {
             </form>
           )}
         </Formik>
-        <p>
-          Already have an account?
-          <Link
-            sx={{
-              textDecoration: "none",
-              fontWeight: "600",
-              paddingLeft: "0.5rem",
-            }}
-            href="/login"
-          >
-            Login.
-          </Link>
-        </p>
       </Container>
     </Paper>
   );

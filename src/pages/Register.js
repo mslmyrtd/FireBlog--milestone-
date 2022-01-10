@@ -1,12 +1,11 @@
 import React from "react";
-import { LockOutlined } from "@mui/icons-material";
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import blok from "../assests/blok.png";
 import { Paper } from "@mui/material";
 import { auth } from "../auth/firebase-config";
 import {
   Avatar,
-  Box,
   Button,
   Container,
   Grid,
@@ -87,8 +86,16 @@ function Register() {
             bgcolor: "#046582",
           }}
         ></Avatar>
-        <Typography sx={{ margin: "1rem" }} variant="h4">
-          Sign Up
+        <Typography
+          sx={{
+            margin: "1rem",
+            color: "#046582",
+            fontFamily: "Girassol",
+            fontWeight: 800,
+          }}
+          variant="h4"
+        >
+          ─── Register ───
         </Typography>
         <Formik
           initialValues={initialValues}
