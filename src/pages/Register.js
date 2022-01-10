@@ -1,108 +1,148 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Avatar from "@mui/material/Avatar";
-import blok from "../assests/blok.png";
-import Typography from "@mui/material/Typography";
-import { Paper, Stack } from "@mui/material";
-
+import React from "react";
+import { LockOutlined } from "@mui/icons-material";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
-const Register = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const handleSubmit = async () => {
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
+
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+
+const signUpValidationSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid Email").required("Email is required"),
+  password: Yup.string()
+    .required("No password provided")
+    .min(8, "Password is too short - should be 8 chars minimum")
+    .matches(/\d+/, "Password must have a number")
+    .matches(/[a-z]+/, "Password must have a lowercase")
+    .matches(/[A-Z]+/, "Password must have a uppercase")
+    .matches(/[!?.@#$%^&*()-+]+/, "Password must have a special char"),
+});
+
+function Register() {
+  const navigate = useNavigate();
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const handleSubmit = async (values, { resetForm }) => {
     try {
-      let user = await createUserWithEmailAndPassword(auth, email, password);
+      let user = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+      navigate("/");
+      console.log(user);
     } catch (err) {
       alert(err.message);
     }
+    resetForm();
   };
+
   return (
-    <Paper
-      elevation={0}
-      style={{
-        background: `url(https://picsum.photos/800/800)`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
+    <Container
+      sx={{
+        marginTop: "3rem",
+        // mt: 6,
+        height: "calc(100vh - 3rem)",
+        textAlign: "center",
       }}
+      maxWidth="sm"
     >
-      <Stack
-        marginTop={5}
-        paddingBottom={3}
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
+      <Avatar
+        sx={{
+          margin: "1rem auto",
+          bgcolor: "primary.main",
+          // bgcolor: blue[500],
+        }}
       >
-        <Stack
-          marginTop={8}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-          padding={4}
-          width={400}
-          bgcolor="white"
-          borderRadius={3}
-          boxShadow="10px 5px 5px #333332 "
+        <LockOutlined />
+      </Avatar>
+      <Typography sx={{ margin: "1rem" }} variant="h4">
+        Sign Up
+      </Typography>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={signUpValidationSchema}
+      >
+        {({
+          values,
+          handleChange,
+          handleSubmit,
+          touched,
+          errors,
+          handleBlur,
+        }) => (
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <TextField
+                  name="email"
+                  label="Email"
+                  variant="outlined"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  helperText={touched.email && errors.email}
+                  error={touched.email && Boolean(errors.email)}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="password"
+                  label="Password"
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  helperText={touched.password && errors.password}
+                  error={touched.password && Boolean(errors.password)}
+                  fullWidth
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  Register
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        )}
+      </Formik>
+      <p>
+        Already have an account?
+        <Link
+          sx={{
+            textDecoration: "none",
+            fontWeight: "600",
+            paddingLeft: "0.5rem",
+          }}
+          href="/login"
         >
-          <Avatar
-            sx={{
-              bgcolor: "#046582",
-              width: 220,
-              height: 220,
-            }}
-          >
-            <img style={{ width: "220px" }} src={blok} alt="blok image" />
-          </Avatar>
-          <Typography
-            variant="p"
-            style={{
-              color: "#046582",
-              fontFamily: "Girassol",
-              fontWeight: 800,
-            }}
-          >
-            <h1>─── Register ───</h1>
-          </Typography>
-          <Stack spacing={2} width={350}>
-            <TextField
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              id="outlined-email"
-              label="Email"
-              type="mail"
-            />
-            <TextField
-              onChange={(e) => setPassword(e.target.value)}
-              id="outlined-password"
-              label="Password"
-              type="password"
-              required
-            />
-            <Button
-              sx={{
-                bgcolor: "#046582",
-                ":hover": { bgcolor: "#D5D5D5", color: "#046582" },
-              }}
-              variant="contained"
-              onClick={handleSubmit}
-            >
-              REGİSTER
-            </Button>
-            <Button
-              sx={{
-                ":hover": { bgcolor: "#D5D5D5", color: "#046582" },
-              }}
-              variant="outlined"
-            >
-              WİTH
-            </Button>
-          </Stack>
-        </Stack>
-      </Stack>
-    </Paper>
+          Login.
+        </Link>
+      </p>
+    </Container>
   );
-};
+}
+
 export default Register;
