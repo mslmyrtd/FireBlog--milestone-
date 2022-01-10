@@ -1,6 +1,8 @@
 import React from "react";
 import { LockOutlined } from "@mui/icons-material";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import blok from "../assests/blok.png";
+import { Paper } from "@mui/material";
 import { auth } from "../auth/firebase-config";
 import {
   Avatar,
@@ -51,97 +53,130 @@ function Register() {
   };
 
   return (
-    <Container
-      sx={{
-        marginTop: "3rem",
-        // mt: 6,
-        height: "calc(100vh - 3rem)",
-        textAlign: "center",
+    <Paper
+      elevation={0}
+      style={{
+        background: `url(https://picsum.photos/800/800) no-repeat 50% 50% / cover`,
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
       }}
-      maxWidth="sm"
     >
-      <Avatar
+      <Container
         sx={{
-          margin: "1rem auto",
-          bgcolor: "primary.main",
-          // bgcolor: blue[500],
+          marginTop: "8rem",
+          // mt: 6,
+          height: "calc(100vh - 3rem)",
+          textAlign: "center",
+          border: "2px solid white",
+          width: "35rem",
+          borderRadius: "1rem",
+          boxShadow: "5px 10px 18px black",
+          background: "white",
         }}
+        maxWidth="sm"
       >
-        <LockOutlined />
-      </Avatar>
-      <Typography sx={{ margin: "1rem" }} variant="h4">
-        Sign Up
-      </Typography>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={signUpValidationSchema}
-      >
-        {({
-          values,
-          handleChange,
-          handleSubmit,
-          touched,
-          errors,
-          handleBlur,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <TextField
-                  name="email"
-                  label="Email"
-                  variant="outlined"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  helperText={touched.email && errors.email}
-                  error={touched.email && Boolean(errors.email)}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="password"
-                  label="Password"
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  helperText={touched.password && errors.password}
-                  error={touched.password && Boolean(errors.password)}
-                  fullWidth
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
-                  Register
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        )}
-      </Formik>
-      <p>
-        Already have an account?
-        <Link
+        <Avatar
+          src={blok}
           sx={{
-            textDecoration: "none",
-            fontWeight: "600",
-            paddingLeft: "0.5rem",
+            marginTop: "3.5rem",
+            margin: "1rem auto",
+            width: "12rem",
+            height: "12rem",
+            bgcolor: "#046582",
           }}
-          href="/login"
+        ></Avatar>
+        <Typography sx={{ margin: "1rem" }} variant="h4">
+          Sign Up
+        </Typography>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={signUpValidationSchema}
         >
-          Login.
-        </Link>
-      </p>
-    </Container>
+          {({
+            values,
+            handleChange,
+            handleSubmit,
+            touched,
+            errors,
+            handleBlur,
+          }) => (
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <TextField
+                    name="email"
+                    label="Email"
+                    variant="outlined"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={touched.email && errors.email}
+                    error={touched.email && Boolean(errors.email)}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="password"
+                    label="Password"
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={touched.password && errors.password}
+                    error={touched.password && Boolean(errors.password)}
+                    fullWidth
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Button
+                    sx={{
+                      bgcolor: "#046582",
+                      ":hover": { bgcolor: "#D5D5D5", color: "#046582" },
+                    }}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                  >
+                    register
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    sx={{
+                      ":hover": { bgcolor: "#D5D5D5", color: "#046582" },
+                    }}
+                    type="submit"
+                    variant="outlined"
+                    fullWidth
+                  >
+                    Google
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          )}
+        </Formik>
+        <p>
+          Already have an account?
+          <Link
+            sx={{
+              textDecoration: "none",
+              fontWeight: "600",
+              paddingLeft: "0.5rem",
+            }}
+            href="/login"
+          >
+            Login.
+          </Link>
+        </p>
+      </Container>
+    </Paper>
   );
 }
 
