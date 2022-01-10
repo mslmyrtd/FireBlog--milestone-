@@ -11,15 +11,12 @@ import { auth } from "../auth/firebase-config";
 const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
   const handleSubmit = async () => {
     try {
       let user = await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
       alert(err.message);
     }
-    setEmail("");
-    setPassword("");
   };
   return (
     <Paper
@@ -76,14 +73,12 @@ const Register = () => {
               id="outlined-email"
               label="Email"
               type="mail"
-              value={email}
             />
             <TextField
               onChange={(e) => setPassword(e.target.value)}
               id="outlined-password"
               label="Password"
               type="password"
-              value={password}
               required
             />
             <Button
