@@ -13,6 +13,7 @@ import {
 
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -34,6 +35,7 @@ const styles = {
   },
 };
 function Login() {
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",

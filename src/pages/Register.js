@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import {
   Avatar,
-  Box,
   Button,
   Container,
   Grid,
@@ -40,8 +39,7 @@ function Register() {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    // console.log(values);
-
+    console.log(values.email, values.password);
     resetForm();
   };
 
