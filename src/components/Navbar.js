@@ -13,7 +13,7 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -76,6 +76,20 @@ export default function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+                {/* {currentUser ? (
+                  <div>
+                    <MenuItem onClick={() => navigate("/Login")}>
+                      Profile
+                    </MenuItem>
+                    <MenuItem onClick={() => navigate("/Register")}>
+                      New
+                    </MenuItem>
+                    <MenuItem onClick={() => navigate("/Register")}>
+                      Logout
+                    </MenuItem>
+                  </div>
+                ) : ( */}
+
                 <MenuItem onClick={() => navigate("/Login")}>Login</MenuItem>
                 <MenuItem onClick={() => navigate("/Register")}>
                   Register
