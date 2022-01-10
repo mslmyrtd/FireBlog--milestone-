@@ -1,6 +1,6 @@
 import React from "react";
 import { LockOutlined } from "@mui/icons-material";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import {
   Avatar,
@@ -37,13 +37,12 @@ function Login() {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      let user = await createUserWithEmailAndPassword(
+      let user = await signInWithEmailAndPassword(
         auth,
         values.email,
         values.password
       );
       navigate("/");
-      console.log(user);
     } catch (err) {
       alert(err.message);
     }
