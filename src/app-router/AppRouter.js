@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import NewBlog from "../pages/NewBlog";
-import { Details } from "@mui/icons-material";
+import Details from "../pages/Details";
 
 const AppRouter = () => {
   return (
