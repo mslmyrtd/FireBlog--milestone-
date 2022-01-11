@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import blok from "../assests/blok.png";
 import {
@@ -12,7 +13,7 @@ import {
 } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Formik } from "formik";
-
+import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -22,7 +23,7 @@ function NewBlog() {
   const navigate = useNavigate();
   const initialValues = {
     title: "",
-    ımageUrl: "",
+    imgUrl: "",
     content: "",
   };
 
@@ -54,6 +55,9 @@ function NewBlog() {
           textAlign: "center",
 
           width: "35rem",
+          borderRadius: "1rem",
+
+          background: "white",
         }}
         maxWidth="sm"
       >
@@ -84,8 +88,8 @@ function NewBlog() {
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField
-                    name="Title*"
-                    label="Title*"
+                    name="title"
+                    label="Title *"
                     variant="outlined"
                     value={values.title}
                     onChange={handleChange}
@@ -94,23 +98,27 @@ function NewBlog() {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    name="Image URL*"
-                    label="Image URL*"
-                    type="password"
-                    value={values.password}
+                    name="imgUrl"
+                    label="ImgUrl *"
+                    variant="outlined"
+                    value={values.imgUrl}
                     onChange={handleChange}
                     fullWidth
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    id="outlined-multiline-static"
-                    label="Content*"
+                    name="content"
+                    label="Content *"
                     multiline
-                    rows={4}
+                    rows={9}
+                    variant="outlined"
+                    value={values.content}
+                    onChange={handleChange}
                     fullWidth
                   />
                 </Grid>
+
                 <Grid item xs={12}>
                   <Button
                     sx={{
@@ -120,10 +128,9 @@ function NewBlog() {
                     type="submit"
                     variant="contained"
                     color="primary"
-                    fontWeight="bold"
                     fullWidth
                   >
-                    SUBMIT
+                    SUBMİT
                   </Button>
                 </Grid>
               </Grid>
