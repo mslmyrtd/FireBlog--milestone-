@@ -11,8 +11,16 @@ const Dashboard = () => {
   //   setdasCard()
   // };
   return (
-    <div style={{ marginTop: "10rem" }}>
-      <h3>---Dashboard---</h3>
+    <div
+      style={{
+        marginTop: "8rem",
+        fontSize: "3rem",
+        color: "#046582",
+        fontFamily: "Girassol",
+        fontWeight: 800,
+      }}
+    >
+      <h3>─── Dashboard ───</h3>
       <DashCard />
     </div>
   );

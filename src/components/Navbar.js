@@ -11,6 +11,7 @@ import { useContext } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
+// import { auth } from "../auth/firebase-config";
 
 export default function Navbar() {
   // const { currentUser } = useContext(AuthContext);
