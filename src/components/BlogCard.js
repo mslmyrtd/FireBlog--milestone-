@@ -12,10 +12,18 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogCard() {
+  const { currentUser } = React.useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleOn = () => {
+    if (currentUser) navigate("/details");
+    else navigate("/login");
+  };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} onClick={handleOn}>
       <CardMedia
         component="img"
         height="194"

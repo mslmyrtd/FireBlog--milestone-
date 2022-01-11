@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import NewBlog from "../pages/NewBlog";
+import { Details } from "@mui/icons-material";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/new" element={<NewBlog />} />
+          <Route path="/details" element={<Details />} />
         </Routes>
       </Router>
     </div>
