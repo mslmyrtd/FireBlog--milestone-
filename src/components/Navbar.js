@@ -13,7 +13,9 @@ import cw from "../assests/cw.svg";
 import { AuthContext } from "../contexts/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
+import { useNavigate } from "react-router-dom";
 export default function Navbar() {
+  const navigate = useNavigate();
   const { currentUser } = React.useContext(AuthContext);
   const [authes, setAuthes] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -76,24 +78,25 @@ export default function Navbar() {
               >
                 {currentUser ? (
                   <div>
-                    <Link href="/profil" underline="none" color={"black"}>
-                      <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    </Link>
-                    <Link href="/newblog" underline="none" color={"black"}>
-                      <MenuItem onClick={handleClose}>New</MenuItem>
-                    </Link>
+                    <MenuItem onClick={() => navigate("/profile")}>
+                      Profile
+                    </MenuItem>
+
+                    <MenuItem onClick={() => navigate("/new")}>New</MenuItem>
+
                     <Link href="/login" underline="none" color={"black"}>
                       <MenuItem onClick={() => signOutFunc()}>Logout</MenuItem>
                     </Link>
                   </div>
                 ) : (
                   <div>
-                    <Link href="/login" underline="none" color={"black"}>
-                      <MenuItem onClick={handleClose}>Login</MenuItem>
-                    </Link>
-                    <Link href="/register" underline="none" color={"black"}>
-                      <MenuItem onClick={handleClose}>Register</MenuItem>
-                    </Link>
+                    <MenuItem onClick={() => navigate("/login")}>
+                      Login
+                    </MenuItem>
+
+                    <MenuItem onClick={() => navigate("/register")}>
+                      Register
+                    </MenuItem>
                   </div>
                 )}
               </Menu>

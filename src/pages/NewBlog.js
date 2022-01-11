@@ -1,5 +1,5 @@
 const NewBlog = () => {
-  return <div>NewBlog</div>;
+  return <div style={{ marginTop: "10rem" }}>NewBlog</div>;
 };
 
 export default NewBlog;
