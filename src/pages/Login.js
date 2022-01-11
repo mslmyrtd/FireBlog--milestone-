@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
@@ -15,6 +15,7 @@ import { Paper } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -28,6 +29,8 @@ const signUpValidationSchema = Yup.object().shape({
 });
 
 function Login() {
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   const navigate = useNavigate();
   const initialValues = {
     email: "",
