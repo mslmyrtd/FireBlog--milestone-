@@ -1,5 +1,6 @@
 import React from "react";
-import DashCard from "./DashCards";
+import BlogCard from "../components/BlogCard";
+
 // import { useEffect, useState } from "react";
 
 const Dashboard = () => {
@@ -21,7 +22,7 @@ const Dashboard = () => {
       }}
     >
       <h3>─── Dashboard ───</h3>
-      <DashCard />
+      <BlogCard />
     </div>
   );
 };
