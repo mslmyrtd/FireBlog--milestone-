@@ -1,5 +1,6 @@
 import app from "./firebase-config";
 import { getDatabase, push, ref, set } from "firebase/database";
+import { useEffect, useState } from "react";
 
 export const addInfo = (values) => {
   const db = getDatabase();
@@ -10,5 +11,12 @@ export const addInfo = (values) => {
     imgUrl: values.imgUrl,
     content: values.content,
   });
-  console.log("veri eklendi");
+  console.log(values.title, values.content);
+};
+
+export const useFetch = () => {
+  const [isLoading, setIsLoading] = useState();
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
 };
