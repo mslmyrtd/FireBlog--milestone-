@@ -1,5 +1,5 @@
 import React from "react";
-
+import { signInWithGoogle } from "../auth/firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import blok from "../assests/blok.png";
 import { Paper } from "@mui/material";
@@ -160,6 +160,7 @@ function Register() {
                     type="submit"
                     variant="outlined"
                     fullWidth
+                    onClick={signInWithGoogle}
                   >
                     Google
                   </Button>
