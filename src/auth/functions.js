@@ -28,6 +28,7 @@ export const useFetch = () => {
         blogsArray.push({ id, ...blog[id] });
       }
       setBlogsList(blogsArray);
+      setIsLoading(false);
     });
   }, []);
   return { isLoading, blogsList };

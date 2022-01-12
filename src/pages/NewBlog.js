@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../auth/firebase-config";
 import blok from "../assests/blok.png";
 import {
   Avatar,
