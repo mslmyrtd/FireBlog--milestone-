@@ -16,7 +16,8 @@ import { Formik } from "formik";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import BlogCard from "../components/BlogCard";
+
+import { addInfo } from "../auth/functions";
 
 function NewBlog() {
   const { currentUser } = useContext(AuthContext);
@@ -30,7 +31,7 @@ function NewBlog() {
 
   const handleSubmit = (values, { resetForm }) => {
     try {
-      console.log(values);
+      addInfo(values);
     } catch (err) {
       alert(err.message);
     }
