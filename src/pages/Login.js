@@ -50,6 +50,14 @@ function Login() {
     }
     resetForm();
   };
+  const signWithGoogle = async (values) => {
+    try {
+      let user2 = await signInWithGoogle(auth, values.email, values.passord);
+      navigate("/");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   return (
     <Paper
@@ -161,7 +169,7 @@ function Login() {
                     type="submit"
                     variant="outlined"
                     fullWidth
-                    onClick={signInWithGoogle}
+                    onClick={signWithGoogle}
                   >
                     Google
                   </Button>

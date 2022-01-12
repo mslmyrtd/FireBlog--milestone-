@@ -20,6 +20,8 @@ export const signInWithGoogle = () => {
       console.log(result);
     })
     .catch((error) => {
-      console.log(error);
+      const errorCode = error.code;
+      const email = error.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
     });
 };
