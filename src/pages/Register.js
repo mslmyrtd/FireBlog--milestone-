@@ -44,7 +44,6 @@ function Register() {
         values.password
       );
       navigate("/");
-      console.log(user);
     } catch (err) {
       alert(err.message);
     }

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { signInWithGoogle } from "../auth/firebase-config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import blok from "../assests/blok.png";
@@ -161,6 +161,7 @@ function Login() {
                     type="submit"
                     variant="outlined"
                     fullWidth
+                    onClick={signInWithGoogle}
                   >
                     Google
                   </Button>

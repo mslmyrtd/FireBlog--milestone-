@@ -23,7 +23,7 @@ export default function BlogCard() {
     else navigate("/login");
   };
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={handleOn}>
+    <Card sx={{ maxWidth: 345, cursor: "pointer" }} onClick={handleOn}>
       <CardMedia
         component="img"
         height="194"
