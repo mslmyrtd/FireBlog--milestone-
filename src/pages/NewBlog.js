@@ -18,9 +18,9 @@ import { AuthContext } from "../contexts/AuthContext";
 import { addInfo } from "../auth/functions";
 
 function NewBlog() {
-  const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   const navigate = useNavigate();
+  const { email } = useContext(AuthContext);
+  const date = new Date().toDateString();
   const initialValues = {
     title: "",
     imgUrl: "",
@@ -29,7 +29,7 @@ function NewBlog() {
 
   const handleSubmit = (values, { resetForm }) => {
     try {
-      addInfo(values);
+      addInfo(values, email, date);
     } catch (err) {
       alert(err.message);
     }

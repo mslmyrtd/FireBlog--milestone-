@@ -1,8 +1,9 @@
 import app from "./firebase-config";
 import { getDatabase, onValue, push, ref, set, query } from "firebase/database";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
-export const addInfo = (values) => {
+export const addInfo = (values, email, date) => {
   const db = getDatabase();
   const userRef = ref(db, "blog");
   const newPostRef = push(userRef);
@@ -10,13 +11,16 @@ export const addInfo = (values) => {
     title: values.title,
     imgUrl: values.imgUrl,
     content: values.content,
+    email: email,
+    date: date,
   });
-  console.log(values.title, values.content);
+  console.log(email);
 };
 
 export const useFetch = () => {
   const [blogsList, setBlogsList] = useState();
   const [isLoading, setIsLoading] = useState();
+
   useEffect(() => {
     setIsLoading(true);
     const db = getDatabase();

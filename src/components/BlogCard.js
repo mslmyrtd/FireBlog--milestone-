@@ -46,7 +46,7 @@ export default function BlogCard() {
             <CardHeader
               style={{ textAlign: "left" }}
               title={item.title}
-              subheader="September 14, 2016"
+              subheader={item.date}
             />
             <CardContent>
               <Typography
@@ -61,10 +61,7 @@ export default function BlogCard() {
               <IconButton aria-label="chat">
                 <AccountCircleIcon />
               </IconButton>
-              <CardHeader
-                style={{ textAlign: "left" }}
-                title="edward@clarusway.com"
-              />
+              <CardHeader style={{ textAlign: "left" }} title={item.email} />
             </CardActions>
 
             <CardActions disableSpacing>
