@@ -14,8 +14,9 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { useFetch } from "../auth/functions";
 export default function BlogCard() {
+  const { isLoading } = useFetch();
   const { currentUser } = React.useContext(AuthContext);
   const navigate = useNavigate();
   const handleOn = () => {
@@ -64,6 +65,7 @@ export default function BlogCard() {
           <ChatBubbleOutlineIcon />
         </IconButton>
       </CardActions>
+      {isLoading ? <p>Loading...</p> : <p>Nothing Found</p>}
     </Card>
   );
 }
