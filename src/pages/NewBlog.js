@@ -13,9 +13,10 @@ import {
 } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Formik } from "formik";
-import * as Yup from "yup";
+
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import BlogCard from "../components/BlogCard";
 
 function NewBlog() {
   const { currentUser } = useContext(AuthContext);
