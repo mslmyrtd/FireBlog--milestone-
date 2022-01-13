@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../auth/functions";
@@ -20,7 +20,8 @@ import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 const Details = () => {
   const { id } = useParams();
-
+  const { email } = useContext(AuthContext);
+  console.log(email);
   const { isLoading, blogsList } = useFetch();
   console.log(blogsList);
   return (
@@ -95,24 +96,34 @@ const Details = () => {
                       </IconButton>
                     </CardActions>
                   </Card>
+                  {item.email === email ? (
+                    <Stack
+                      direction="row"
+                      spacing={20}
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: "1rem",
+                      }}
+                    >
+                      <Button variant="contained" color="success">
+                        UPDATE
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        color="error"
+                        startIcon={<DeleteIcon />}
+                      >
+                        Delete
+                      </Button>
+                    </Stack>
+                  ) : null}
                 </Container>
               </React.Fragment>
             ) : null
           )
         )}
       </div>
-      <Stack
-        direction="row"
-        spacing={20}
-        style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}
-      >
-        <Button variant="contained" color="success">
-          UPDATE
-        </Button>
-        <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
-          Delete
-        </Button>
-      </Stack>
     </div>
   );
 };
