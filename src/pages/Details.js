@@ -13,10 +13,11 @@ import Container from "@mui/material/Container";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import Button from "@mui/material/Button";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../auth/functions";
-
+import Stack from "@mui/material/Stack";
+import DeleteIcon from "@mui/icons-material/Delete";
 const Details = () => {
   const { id } = useParams();
 
@@ -41,11 +42,18 @@ const Details = () => {
             item.id === id ? (
               <React.Fragment>
                 <CssBaseline />
-                <Container item key={index}>
-                  <Card sx={{ Width: 345, cursor: "pointer", height: 500 }}>
+                <Container fixed key={index}>
+                  <Card
+                    sx={{
+                      Width: 345,
+                      cursor: "pointer",
+                      height: "100vh",
+                      marginTop: "-25px",
+                    }}
+                  >
                     <CardMedia
                       component="img"
-                      height="194px"
+                      height="240px"
                       image={item.imgUrl}
                       alt="Paella dish"
                     />
@@ -93,6 +101,18 @@ const Details = () => {
           )
         )}
       </div>
+      <Stack
+        direction="row"
+        spacing={20}
+        style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}
+      >
+        <Button variant="contained" color="success">
+          UPDATE
+        </Button>
+        <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
+          Delete
+        </Button>
+      </Stack>
     </div>
   );
 };
