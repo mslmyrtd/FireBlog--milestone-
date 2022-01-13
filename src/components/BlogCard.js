@@ -15,6 +15,16 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../auth/functions";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+// const Item = styled(Paper)(({ theme }) => ({
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
 export default function BlogCard() {
   const { isLoading, blogsList } = useFetch();
   console.log(blogsList);
@@ -25,56 +35,62 @@ export default function BlogCard() {
     else navigate("/login");
   };
   return (
-    <div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : blogsList?.length === 0 ? (
-        <p>Nothing Found</p>
-      ) : (
-        blogsList?.map((item, index) => (
-          <Card
-            sx={{ maxWidth: 345, cursor: "pointer" }}
-            onClick={handleOn}
-            key={index}
-          >
-            <CardMedia
-              component="img"
-              height="194"
-              image={item.imgUrl}
-              alt="Paella dish"
-            />
-            <CardHeader
-              style={{ textAlign: "left" }}
-              title={item.title}
-              subheader={item.date}
-            />
-            <CardContent>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                style={{ textAlign: "left", marginTop: "-25px" }}
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={1}>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : blogsList?.length === 0 ? (
+          <p>Nothing Found</p>
+        ) : (
+          blogsList?.map((item, index) => (
+            <Grid item xs={12} md={4} sm={6} key={index}>
+              <Card
+                sx={{ maxWidth: 345, cursor: "pointer", maxHeight: 450 }}
+                onClick={handleOn}
               >
-                {item.content}
-              </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="chat">
-                <AccountCircleIcon />
-              </IconButton>
-              <CardHeader style={{ textAlign: "left" }} title={item.email} />
-            </CardActions>
+                <CardMedia
+                  component="img"
+                  height="194"
+                  image={item.imgUrl}
+                  alt="Paella dish"
+                />
 
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="chat">
-                <ChatBubbleOutlineIcon />
-              </IconButton>
-            </CardActions>
-          </Card>
-        ))
-      )}
-    </div>
+                <CardHeader
+                  style={{ textAlign: "left" }}
+                  title={item.title}
+                  subheader={item.date}
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    style={{ textAlign: "left", marginTop: "-25px" }}
+                  >
+                    {item.content}
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="chat">
+                    <AccountCircleIcon />
+                  </IconButton>
+                  <CardHeader
+                    style={{ textAlign: "left" }}
+                    title={item.email}
+                  />
+                </CardActions>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton aria-label="chat">
+                    <ChatBubbleOutlineIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))
+        )}
+      </Grid>
+    </Box>
   );
 }
