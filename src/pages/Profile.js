@@ -14,6 +14,7 @@ import { useFetch } from "../auth/functions";
 import blok from "../assests/blok.png";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
+import { useParams } from "react-router-dom";
 
 function Item(props) {
   const { sx, ...other } = props;

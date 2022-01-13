@@ -12,17 +12,22 @@ import {
 import { Paper } from "@mui/material";
 import { Formik } from "formik";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
-import { addInfo } from "../auth/functions";
+import { addInfo, useDate, useFetch } from "../auth/functions";
+import { update } from "firebase/database";
 
 function UpdateBlog() {
+  const { upDateList } = useDate();
+  console.log(upDateList);
+  const { id } = useParams();
+  console.log(id);
   const navigate = useNavigate();
   const { email } = useContext(AuthContext);
   const date = new Date().toDateString();
   const initialValues = {
-    title: "",
+    title: upDateList.title,
     imgUrl: "",
     content: "",
   };

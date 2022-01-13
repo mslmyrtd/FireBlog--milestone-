@@ -19,15 +19,17 @@ import { useFetch } from "../auth/functions";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
+import { update } from "firebase/database";
 const Details = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { email } = useContext(AuthContext);
   console.log(email);
-  const { isLoading, blogsList, deleteInfo } = useFetch();
+  const { isLoading, blogsList, deleteInfo, upDate } = useFetch();
   console.log(blogsList);
-  const editHandler = (item) => {
-    navigate(`/update/${item.id}`);
+  const editHandler = (id, title, content, imgUrl) => {
+    navigate(`/update/${id}`);
+    update(id, title, content, imgUrl);
   };
   return (
     <div
@@ -121,10 +123,10 @@ const Details = () => {
                       <Button
                         onClick={() =>
                           deleteInfo(
-                            item.title,
+                            item.id,
                             item.imgUrl,
                             item.content,
-                            item.id
+                            item.title
                           )
                         }
                         variant="outlined"

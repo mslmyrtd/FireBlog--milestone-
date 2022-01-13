@@ -54,10 +54,36 @@ export const deleteInfo = (id) => {
   remove(ref(db, "blog/" + id));
 };
 
-export const upDate = (item) => {
+export const upDate = ({ item }) => {
   const db = getDatabase();
-  const newUserKey = push(child(ref(db), "blog/")).key;
+  const infoData = {
+    title: item.title,
+    imgUrl: item.imgUrl,
+    content: item.content,
+    id: item.id,
+  };
+  // const newUserKey = push(child(ref(db), "blog/")).key;
   const updates = {};
-  updates["blog/" + newUserKey] = item;
+  updates["blog/" + item.id] = infoData;
   return update(ref(db), updates);
+};
+export const useDate = () => {
+  const [upDateList, setUpDateList] = useState();
+  const [isLoading, setIsLoading] = useState();
+
+  useEffect(() => {
+    setIsLoading(true);
+    const db = getDatabase();
+    const userRef = ref(db, "blog");
+    onValue(query(userRef), (snapshot) => {
+      const blog = snapshot.val();
+      const upDateArray = [];
+      for (let id in blog) {
+        upDateArray.push({ id, ...blog[id] });
+      }
+      setUpDateList(upDateArray);
+      setIsLoading(false);
+    });
+  }, []);
+  return { isLoading, upDateList };
 };
