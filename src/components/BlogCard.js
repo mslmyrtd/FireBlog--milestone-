@@ -18,13 +18,13 @@ import { useFetch } from "../auth/functions";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-// const Item = styled(Paper)(({ theme }) => ({
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-// }));
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 export default function BlogCard() {
   const { isLoading, blogsList } = useFetch();
   console.log(blogsList);
@@ -35,26 +35,25 @@ export default function BlogCard() {
     else navigate("/login");
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={1}>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : blogsList?.length === 0 ? (
-          <p>Nothing Found</p>
-        ) : (
-          blogsList?.map((item, index) => (
-            <Grid item xs={12} md={4} sm={6} key={index}>
-              <Card
-                sx={{ maxWidth: 345, cursor: "pointer", maxHeight: 450 }}
+    <div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : blogsList?.length === 0 ? (
+        <p>Nothing Found</p>
+      ) : (
+        <Grid container spacing={2}>
+          {blogsList?.map((item, index) => (
+            <Grid item xs={12} md={4} sm={6}>
+              <Item
+                sx={{ Width: 345, cursor: "pointer", height: 500 }}
                 onClick={handleOn}
               >
                 <CardMedia
                   component="img"
-                  height="194"
+                  height="194px"
                   image={item.imgUrl}
                   alt="Paella dish"
                 />
-
                 <CardHeader
                   style={{ textAlign: "left" }}
                   title={item.title}
@@ -64,7 +63,12 @@ export default function BlogCard() {
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    style={{ textAlign: "left", marginTop: "-25px" }}
+                    style={{
+                      textAlign: "left",
+                      marginTop: "-25px",
+                      overFlow: "hidden",
+                      height: "125",
+                    }}
                   >
                     {item.content}
                   </Typography>
@@ -78,6 +82,7 @@ export default function BlogCard() {
                     title={item.email}
                   />
                 </CardActions>
+
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
@@ -86,11 +91,11 @@ export default function BlogCard() {
                     <ChatBubbleOutlineIcon />
                   </IconButton>
                 </CardActions>
-              </Card>
+              </Item>
             </Grid>
-          ))
-        )}
-      </Grid>
-    </Box>
+          ))}
+        </Grid>
+      )}
+    </div>
   );
 }
