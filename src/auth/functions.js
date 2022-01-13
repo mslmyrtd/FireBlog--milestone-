@@ -1,5 +1,13 @@
 import app from "./firebase-config";
-import { getDatabase, onValue, push, ref, set, query } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  push,
+  ref,
+  set,
+  query,
+  remove,
+} from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -35,7 +43,11 @@ export const useFetch = () => {
       setIsLoading(false);
     });
   }, []);
-  return { isLoading, blogsList };
+  return { isLoading, blogsList, deleteInfo };
 };
 
-export const deleteInfo = (id) => {};
+export const deleteInfo = (id) => {
+  const db = getDatabase();
+  const userRef = ref(db, "blog");
+  remove(ref(db, "blog/" + id));
+};

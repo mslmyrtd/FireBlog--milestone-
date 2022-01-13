@@ -22,7 +22,7 @@ const Details = () => {
   const { id } = useParams();
   const { email } = useContext(AuthContext);
   console.log(email);
-  const { isLoading, blogsList } = useFetch();
+  const { isLoading, blogsList, deleteInfo } = useFetch();
   console.log(blogsList);
   return (
     <div
@@ -110,6 +110,7 @@ const Details = () => {
                         UPDATE
                       </Button>
                       <Button
+                        onClick={() => deleteInfo(item.id)}
                         variant="outlined"
                         color="error"
                         startIcon={<DeleteIcon />}
