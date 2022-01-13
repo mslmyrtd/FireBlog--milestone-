@@ -19,6 +19,7 @@ const AppRouter = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/new" element={<NewBlog />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/details/:id" element={<Details />} />
         </Routes>
       </Router>
     </div>

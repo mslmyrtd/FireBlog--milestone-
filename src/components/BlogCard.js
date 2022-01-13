@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -30,10 +29,12 @@ export default function BlogCard() {
   console.log(blogsList);
   const { currentUser } = React.useContext(AuthContext);
   const navigate = useNavigate();
-  const handleOn = () => {
-    if (currentUser) navigate("/details");
-    else navigate("/login");
+  const handleOn = (item) => {
+    if (currentUser) {
+      navigate(`/details/${item.id}`);
+    } else navigate("/login");
   };
+
   return (
     <div>
       {isLoading ? (
@@ -43,10 +44,10 @@ export default function BlogCard() {
       ) : (
         <Grid container spacing={2}>
           {blogsList?.map((item, index) => (
-            <Grid item xs={12} md={4} sm={6}>
+            <Grid item xs={12} md={4} sm={6} key={index}>
               <Item
                 sx={{ Width: 345, cursor: "pointer", height: 500 }}
-                onClick={handleOn}
+                onClick={() => handleOn(item)}
               >
                 <CardMedia
                   component="img"

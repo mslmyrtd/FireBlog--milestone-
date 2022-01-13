@@ -1,4 +1,10 @@
+import { useParams } from "react-router-dom";
+import { useFetch } from "../auth/functions";
+
 const Details = () => {
+  const { id } = useParams();
+  const { blogsList } = useFetch();
+  console.log(blogsList);
   return (
     <div
       style={{
@@ -10,6 +16,7 @@ const Details = () => {
       }}
     >
       <h3>─── Details ───</h3>
+      {blogsList?.map((card) => (card.id === id ? <p>{card.id}</p> : null))}
     </div>
   );
 };

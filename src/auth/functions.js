@@ -37,3 +37,5 @@ export const useFetch = () => {
   }, []);
   return { isLoading, blogsList };
 };
+
+export const deleteInfo = (id) => {};

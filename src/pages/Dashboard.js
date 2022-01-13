@@ -1,16 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 
-// import { useEffect, useState } from "react";
-
 const Dashboard = () => {
-  // const [dashCard, setdasCard] = useState([]);
-  // useEffect(() => {
-  //   getDashCard();
-  // }, []);
-  // const getDashCard = () => {
-  //   setdasCard()
-  // };
   return (
     <div
       style={{
@@ -22,6 +14,7 @@ const Dashboard = () => {
       }}
     >
       <h3>─── Dashboard ───</h3>
+
       <BlogCard />
     </div>
   );
