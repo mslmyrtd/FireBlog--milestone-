@@ -18,12 +18,17 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../auth/functions";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 const Details = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { email } = useContext(AuthContext);
   console.log(email);
-  const { isLoading, blogsList, deleteInfo, upDate } = useFetch();
+  const { isLoading, blogsList, deleteInfo } = useFetch();
   console.log(blogsList);
+  const editHandler = (item) => {
+    navigate(`/update/${item.id}`);
+  };
   return (
     <div
       style={{
@@ -107,7 +112,7 @@ const Details = () => {
                       }}
                     >
                       <Button
-                        onClick={() => upDate(item)}
+                        onClick={() => editHandler(item)}
                         variant="contained"
                         color="success"
                       >
