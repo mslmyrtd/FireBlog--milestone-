@@ -7,6 +7,8 @@ import {
   set,
   query,
   remove,
+  child,
+  update,
 } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
@@ -43,11 +45,19 @@ export const useFetch = () => {
       setIsLoading(false);
     });
   }, []);
-  return { isLoading, blogsList, deleteInfo };
+  return { isLoading, blogsList, deleteInfo, upDate };
 };
 
 export const deleteInfo = (id) => {
   const db = getDatabase();
   const userRef = ref(db, "blog");
   remove(ref(db, "blog/" + id));
+};
+
+export const upDate = (item) => {
+  const db = getDatabase();
+  const newUserKey = push(child(ref(db), "blog/")).key;
+  const updates = {};
+  updates["blog/" + newUserKey] = item;
+  return update(ref(db), updates);
 };

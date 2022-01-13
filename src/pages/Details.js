@@ -22,7 +22,7 @@ const Details = () => {
   const { id } = useParams();
   const { email } = useContext(AuthContext);
   console.log(email);
-  const { isLoading, blogsList, deleteInfo } = useFetch();
+  const { isLoading, blogsList, deleteInfo, upDate } = useFetch();
   console.log(blogsList);
   return (
     <div
@@ -106,11 +106,22 @@ const Details = () => {
                         marginTop: "1rem",
                       }}
                     >
-                      <Button variant="contained" color="success">
+                      <Button
+                        onClick={() => upDate(item)}
+                        variant="contained"
+                        color="success"
+                      >
                         UPDATE
                       </Button>
                       <Button
-                        onClick={() => deleteInfo(item.id)}
+                        onClick={() =>
+                          deleteInfo(
+                            item.title,
+                            item.imgUrl,
+                            item.content,
+                            item.id
+                          )
+                        }
                         variant="outlined"
                         color="error"
                         startIcon={<DeleteIcon />}
