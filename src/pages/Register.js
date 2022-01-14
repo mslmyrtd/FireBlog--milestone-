@@ -44,7 +44,7 @@ function Register() {
         values.email,
         values.password
       );
-      successNote("Successsfull Register");
+      successNote("Successsfully Register");
       navigate("/");
     } catch (err) {
       alert(err.message);

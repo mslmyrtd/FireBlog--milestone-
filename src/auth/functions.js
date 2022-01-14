@@ -25,7 +25,7 @@ export const addInfo = (values, email, date) => {
     email: email,
     date: date,
   });
-  successNote("Updated Successfully");
+  successNote("Blog Added Successfully");
 };
 
 export const useFetch = () => {

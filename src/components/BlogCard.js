@@ -90,6 +90,8 @@ export default function BlogCard() {
                       variant="body1"
                       color="text.secondary"
                       textAlign="left"
+                      marginTop="-15px"
+                      color="black"
                     >
                       {item.content}
                     </Typography>

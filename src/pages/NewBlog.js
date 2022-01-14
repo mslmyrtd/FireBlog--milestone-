@@ -30,6 +30,7 @@ function NewBlog() {
   const handleSubmit = (values, { resetForm }) => {
     try {
       addInfo(values, email, date);
+      navigate("/");
     } catch (err) {
       alert(err.message);
     }

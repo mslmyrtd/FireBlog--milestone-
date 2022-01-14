@@ -45,7 +45,7 @@ function Login() {
         values.email,
         values.password
       );
-      successNote("Successfull Login");
+      successNote("Successfully Login");
       navigate("/");
     } catch (err) {
       alert(err.message);
