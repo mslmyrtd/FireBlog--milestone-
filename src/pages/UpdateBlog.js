@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import blok from "../assests/blok.png";
 import {
@@ -12,14 +12,18 @@ import {
 } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Formik } from "formik";
-
+import { getDatabase, ref, update } from "firebase/database";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 import { addInfo, useDate, useFetch } from "../auth/functions";
-import { update } from "firebase/database";
+
+import { successNote } from "../helpers/toastNotify";
 
 function UpdateBlog() {
+  const [title, setTitle] = useState();
+  const [imgUrl, setImgUrl] = useState();
+  const [content, setContent] = useState();
   const { id } = useParams();
   console.log(id);
   const navigate = useNavigate();
@@ -27,18 +31,27 @@ function UpdateBlog() {
   const { blogsList } = useFetch();
 
   const date = new Date().toDateString();
-  const initialValues = {
-    title: "",
-    imgUrl: "",
-    content: "",
-  };
 
-  const handleSubmit = (values, { resetForm }) => {
-    try {
-    } catch (err) {
-      alert(err.message);
-    }
-    resetForm();
+  const blog = () => {
+    upDateBlog(title, imgUrl, content, id, email, date);
+    successNote("Updated Successffully");
+    navigate("/");
+    console.log(imgUrl);
+  };
+  const upDateBlog = () => {
+    const db = getDatabase();
+    const infoData = {
+      title: title,
+      imgUrl: imgUrl,
+      content: content,
+      id: id,
+      email: email,
+      date: date,
+    };
+    // const newUserKey = push(child(ref(db), "blog/")).key;
+    const updates = {};
+    updates["blog/" + id] = infoData;
+    return update(ref(db), updates);
   };
 
   return (
@@ -86,61 +99,59 @@ function UpdateBlog() {
             >
               ─── Update Blog ───
             </Typography>
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-              {({ values, handleChange, handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                      <TextField
-                        name="title"
-                        label="Title *"
-                        variant="outlined"
-                        value={values.title || item.title}
-                        onChange={handleChange}
-                        fullWidth
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        name="imgUrl"
-                        label="ImgUrl *"
-                        variant="outlined"
-                        value={values.imgUrl || item.imgUrl}
-                        onChange={handleChange}
-                        fullWidth
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        name="content"
-                        label="Content *"
-                        multiline
-                        rows={9}
-                        variant="outlined"
-                        value={values.content || item.content}
-                        onChange={handleChange}
-                        fullWidth
-                      />
-                    </Grid>
+            <form>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <TextField
+                    name="title"
+                    label="Title *"
+                    variant="outlined"
+                    value={title ? title : setTitle(item.title)}
+                    onChange={(e) => setTitle(e.target.value)}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="imgUrl"
+                    label="ImgUrl *"
+                    variant="outlined"
+                    value={imgUrl ? imgUrl : setImgUrl(item.imgUrl)}
+                    onChange={(e) => setImgUrl(e.target.value)}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    name="content"
+                    label="Content *"
+                    multiline
+                    rows={9}
+                    variant="outlined"
+                    value={content ? content : setContent(item.content)}
+                    onChange={(e) => setContent(e.target.value)}
+                    fullWidth
+                  />
+                </Grid>
 
-                    <Grid item xs={12}>
-                      <Button
-                        sx={{
-                          bgcolor: "#046582",
-                          ":hover": { bgcolor: "#D5D5D5", color: "#046582" },
-                        }}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                      >
-                        SUBMİT
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </form>
-              )}
-            </Formik>
+                <Grid item xs={12}>
+                  <Button
+                    sx={{
+                      bgcolor: "#046582",
+                      ":hover": { bgcolor: "#D5D5D5", color: "#046582" },
+                    }}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    onClick={blog}
+                  >
+                    SUBMİT
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+            }
           </Container>
         ) : null
       )}

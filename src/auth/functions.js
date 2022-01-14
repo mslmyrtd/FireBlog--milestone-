@@ -46,7 +46,7 @@ export const useFetch = () => {
       setIsLoading(false);
     });
   }, []);
-  return { isLoading, blogsList, deleteInfo, upDate };
+  return { isLoading, blogsList, deleteInfo };
 };
 
 export const deleteInfo = (id) => {
@@ -54,19 +54,4 @@ export const deleteInfo = (id) => {
   const userRef = ref(db, "blog");
   remove(ref(db, "blog/" + id));
   successNote("Deleted");
-};
-
-export const upDate = (id, title, content, imgUrl) => {
-  const db = getDatabase();
-  const infoData = {
-    title: title,
-    imgUrl: imgUrl,
-    content: content,
-    id: id,
-  };
-  // const newUserKey = push(child(ref(db), "blog/")).key;
-  const updates = {};
-  updates["blog/" + id] = infoData;
-  successNote("Updated Successffully");
-  return update(ref(db), updates);
 };
