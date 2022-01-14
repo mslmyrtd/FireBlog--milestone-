@@ -151,7 +151,6 @@ function UpdateBlog() {
                 </Grid>
               </Grid>
             </form>
-            }
           </Container>
         ) : null
       )}

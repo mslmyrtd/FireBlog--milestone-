@@ -181,16 +181,16 @@ function Register() {
         </Formik>
         <p>
           Already have an account?
-          <Link
+          <span
+            onClick={() => navigate("/login")}
             sx={{
               textDecoration: "none",
               fontWeight: "600",
               paddingLeft: "0.5rem",
             }}
-            href="/login"
           >
             Login.
-          </Link>
+          </span>
         </p>
       </Container>
     </Paper>
