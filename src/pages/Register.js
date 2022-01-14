@@ -17,6 +17,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { successNote } from "../helpers/toastNotify";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -43,6 +44,7 @@ function Register() {
         values.email,
         values.password
       );
+      successNote("Successsfull Register");
       navigate("/");
     } catch (err) {
       alert(err.message);

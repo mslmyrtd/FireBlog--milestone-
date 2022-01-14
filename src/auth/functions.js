@@ -56,17 +56,17 @@ export const deleteInfo = (id) => {
   successNote("Deleted");
 };
 
-export const upDate = ({ item }) => {
+export const upDate = (id, title, content, imgUrl) => {
   const db = getDatabase();
   const infoData = {
-    title: item.title,
-    imgUrl: item.imgUrl,
-    content: item.content,
-    id: item.id,
+    title: title,
+    imgUrl: imgUrl,
+    content: content,
+    id: id,
   };
   // const newUserKey = push(child(ref(db), "blog/")).key;
   const updates = {};
-  updates["blog/" + item.id] = infoData;
-
+  updates["blog/" + id] = infoData;
+  successNote("Updated Successffully");
   return update(ref(db), updates);
 };

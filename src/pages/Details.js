@@ -27,10 +27,7 @@ const Details = () => {
   console.log(email);
   const { isLoading, blogsList, deleteInfo, upDate } = useFetch();
   console.log(blogsList);
-  const editHandler = (id, title, content, imgUrl) => {
-    navigate(`/update/${id}`);
-    update(id, title, content, imgUrl);
-  };
+
   return (
     <div
       style={{
@@ -62,7 +59,7 @@ const Details = () => {
                     <CardMedia
                       component="img"
                       height="240px"
-                      objectFit="scale-down"
+                      objectFit="cover"
                       image={item.imgUrl}
                       alt="Paella dish"
                     />
@@ -115,7 +112,7 @@ const Details = () => {
                       }}
                     >
                       <Button
-                        onClick={() => editHandler(item)}
+                        onClick={() => navigate(`/update/${item.id}`)}
                         variant="contained"
                         color="success"
                       >

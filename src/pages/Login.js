@@ -16,6 +16,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { successNote } from "../helpers/toastNotify";
 
 const signUpValidationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -44,6 +45,7 @@ function Login() {
         values.email,
         values.password
       );
+      successNote("Successfull Login");
       navigate("/");
     } catch (err) {
       alert(err.message);
@@ -52,7 +54,7 @@ function Login() {
   };
   const signWithGoogle = async (values) => {
     try {
-      let user2 = await signInWithGoogle(auth, values.email, values.passord);
+      let user2 = await signInWithGoogle(auth, values.email, values.password);
       navigate("/");
     } catch (err) {
       alert(err.message);
