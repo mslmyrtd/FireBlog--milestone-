@@ -10,6 +10,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
+import Box from "@mui/material/Box";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ import { useFetch } from "../auth/functions";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-
+import LinearProgress from "@mui/material/LinearProgress";
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -38,7 +39,9 @@ export default function BlogCard() {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress />
+        </Box>
       ) : blogsList?.length === 0 ? (
         <p>Nothing Found</p>
       ) : (
