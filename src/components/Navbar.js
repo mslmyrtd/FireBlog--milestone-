@@ -77,7 +77,7 @@ export default function Navbar() {
                 onClose={handleClose}
               >
                 {currentUser ? (
-                  <div>
+                  <div onClick={handleClose}>
                     <MenuItem onClick={() => navigate("/profile")}>
                       Profile
                     </MenuItem>
@@ -89,7 +89,7 @@ export default function Navbar() {
                     </Link>
                   </div>
                 ) : (
-                  <div>
+                  <div onClick={handleClose}>
                     <MenuItem onClick={() => navigate("/login")}>
                       Login
                     </MenuItem>
