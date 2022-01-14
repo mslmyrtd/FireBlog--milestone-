@@ -62,6 +62,7 @@ const Details = () => {
                     <CardMedia
                       component="img"
                       height="240px"
+                      objectFit="scale-down"
                       image={item.imgUrl}
                       alt="Paella dish"
                     />

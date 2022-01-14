@@ -51,7 +51,8 @@ export default function BlogCard() {
               >
                 <CardMedia
                   component="img"
-                  height="194px"
+                  height="200px"
+                  objectFit="cover"
                   image={item.imgUrl}
                   alt="Paella dish"
                 />
