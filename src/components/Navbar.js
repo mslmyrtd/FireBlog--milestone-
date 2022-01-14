@@ -21,6 +21,7 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const signOutFunc = async () => {
     await signOut(auth);
+    navigate("/login");
   };
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -84,9 +85,7 @@ export default function Navbar() {
 
                     <MenuItem onClick={() => navigate("/new")}>New</MenuItem>
 
-                    <Link href="/login" underline="none" color={"black"}>
-                      <MenuItem onClick={() => signOutFunc()}>Logout</MenuItem>
-                    </Link>
+                    <MenuItem onClick={() => signOutFunc()}>Logout</MenuItem>
                   </div>
                 ) : (
                   <div onClick={handleClose}>
