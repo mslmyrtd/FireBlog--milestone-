@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <div
       style={{
-        marginTop: "8rem",
+        margin: "5rem",
         fontSize: "3rem",
         color: "#046582",
         fontFamily: "Girassol",

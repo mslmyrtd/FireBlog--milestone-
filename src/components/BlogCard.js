@@ -42,38 +42,58 @@ export default function BlogCard() {
       ) : blogsList?.length === 0 ? (
         <p>Nothing Found</p>
       ) : (
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           {blogsList?.map((item, index) => (
             <Grid item xs={12} md={4} sm={6} key={index}>
               <Item
-                sx={{ Width: 345, cursor: "pointer", height: 500 }}
+                sx={{
+                  Width: 345,
+                  cursor: "pointer",
+                  height: 500,
+                  borderBottom: "1px solid ",
+                }}
                 onClick={() => handleOn(item)}
               >
                 <CardMedia
                   component="img"
                   height="200px"
-                  objectFit="cover"
                   image={item.imgUrl}
                   alt="Paella dish"
                 />
-                <CardHeader
-                  style={{ textAlign: "left" }}
-                  title={item.title}
-                  subheader={item.date}
-                />
-                <CardContent>
+                <CardContent
+                  style={{
+                    background: "#D9D9D9",
+                    height: "125px",
+                    overflow: "hidden",
+                  }}
+                >
                   <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    style={{
-                      textAlign: "left",
-                      marginTop: "-25px",
-                      overFlow: "hidden",
-                      height: "125",
-                    }}
+                    style={{ textAlign: "center" }}
+                    fontFamily="Girassol"
+                    component="div"
+                    variant="h5"
+                    color="#046582"
+                    gutterBottom
                   >
-                    {item.content}
+                    {item.title}
                   </Typography>
+                  <Typography
+                    component="div"
+                    variant="body1"
+                    color="text.secondary"
+                  >
+                    {item.date}
+                  </Typography>
+                  <CardContent>
+                    <Typography
+                      component="div"
+                      variant="body1"
+                      color="text.secondary"
+                      textAlign="left"
+                    >
+                      {item.content}
+                    </Typography>
+                  </CardContent>
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="chat">
