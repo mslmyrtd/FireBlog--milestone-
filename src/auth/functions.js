@@ -12,6 +12,7 @@ import {
 } from "firebase/database";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { successNote } from "../helpers/toastNotify";
 
 export const addInfo = (values, email, date) => {
   const db = getDatabase();
@@ -24,7 +25,7 @@ export const addInfo = (values, email, date) => {
     email: email,
     date: date,
   });
-  console.log(email);
+  successNote("Updated Successfully");
 };
 
 export const useFetch = () => {
@@ -52,6 +53,7 @@ export const deleteInfo = (id) => {
   const db = getDatabase();
   const userRef = ref(db, "blog");
   remove(ref(db, "blog/" + id));
+  successNote("Deleted");
 };
 
 export const upDate = ({ item }) => {
@@ -65,5 +67,6 @@ export const upDate = ({ item }) => {
   // const newUserKey = push(child(ref(db), "blog/")).key;
   const updates = {};
   updates["blog/" + item.id] = infoData;
+
   return update(ref(db), updates);
 };
