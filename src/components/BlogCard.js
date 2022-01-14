@@ -47,12 +47,12 @@ export default function BlogCard() {
       ) : (
         <Grid container spacing={2}>
           {blogsList?.map((item, index) => (
-            <Grid item xs={12} md={4} sm={6} key={index}>
+            <Grid item xs={12} md={6} lg={4} key={index}>
               <Item
                 sx={{
-                  width: "345px",
+                  width: 345,
                   cursor: "pointer",
-                  height: "500px",
+                  height: 500,
                   borderBottom: "1px solid ",
                 }}
                 onClick={() => handleOn(item)}

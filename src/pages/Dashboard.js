@@ -11,7 +11,6 @@ const Dashboard = () => {
         color: "#046582",
         fontFamily: "Girassol",
         fontWeight: 800,
-        background: "ffffff",
       }}
     >
       <h3>─── Dashboard ───</h3>
