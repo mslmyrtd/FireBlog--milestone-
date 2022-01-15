@@ -15,6 +15,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../auth/firebase-config";
 import { useNavigate } from "react-router-dom";
 export default function Navbar() {
+  const { name } = React.useContext(AuthContext);
   const navigate = useNavigate();
   const { currentUser } = React.useContext(AuthContext);
   const [authes, setAuthes] = React.useState(true);
@@ -52,16 +53,19 @@ export default function Navbar() {
           </Typography>
           {authes && (
             <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <div style={{ display: "flex" }}>
+                {currentUser && <h3>{name}</h3>}
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </div>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}

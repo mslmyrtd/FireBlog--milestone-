@@ -172,7 +172,7 @@ function Register() {
                     fullWidth
                     onClick={signWithGoogle}
                   >
-                    Google
+                    Login With Google
                   </Button>
                 </Grid>
               </Grid>
@@ -189,7 +189,7 @@ function Register() {
               paddingLeft: "0.5rem",
             }}
           >
-            Login.
+            <span style={{ color: "blue", cursor: "pointer" }}>Login.</span>
           </span>
         </p>
       </Container>

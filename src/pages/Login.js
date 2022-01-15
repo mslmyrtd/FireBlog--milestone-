@@ -173,7 +173,7 @@ function Login() {
                     fullWidth
                     onClick={signWithGoogle}
                   >
-                    Google
+                    Wıth Google
                   </Button>
                 </Grid>
               </Grid>
