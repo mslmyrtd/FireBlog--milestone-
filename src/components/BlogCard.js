@@ -54,6 +54,7 @@ export default function BlogCard() {
                   cursor: "pointer",
                   height: 500,
                   borderBottom: "1px solid ",
+                  display: "inline-block",
                 }}
                 onClick={() => handleOn(item)}
               >
