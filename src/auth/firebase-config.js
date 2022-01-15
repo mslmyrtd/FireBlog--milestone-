@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { successNote } from "../helpers/toastNotify";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEI-SzwmNp5kcOcQlzwbtjaIjIiKM_NO8",
@@ -19,6 +20,7 @@ export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
+      successNote("Successfully Login");
     })
     .catch((error) => {
       const errorCode = error.code;
