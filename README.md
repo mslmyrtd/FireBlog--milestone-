@@ -92,6 +92,6 @@ Build a Register FireBlog App using ReactJS.
 
 ## Notes
 
-- You can add additional functionalities to your app.
+- You can see my app with this link https://fireblog-mslm.netlify.app/
 
-**<p align="center">&#9786; Happy Coding &#9997;</p>**
+
