@@ -1,5 +1,4 @@
-<p>Clarusway<img align="right"
-  src="https://secure.meetupstatic.com/photos/event/3/1/b/9/600_488352729.jpeg"  width="15px"></p>
+ -You can see my app with this link https://fireblog-mslm.netlify.app/
 
 # Project-011 : FireBlog App (RC-11)
 
@@ -92,6 +91,6 @@ Build a Register FireBlog App using ReactJS.
 
 ## Notes
 
-- You can see my app with this link https://fireblog-mslm.netlify.app/
+-
 
 
